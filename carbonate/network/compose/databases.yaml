@@ -1,0 +1,53 @@
+networks:
+  test:
+    name: carbonate_pilot
+services:
+  carbonate-db-platform:
+    container_name: carbonate-db-platform
+    image: yugabytedb/yugabyte:2025.2.0.0-b131
+    command: ["bin/yugabyted", "start", "--background=false"]
+    volumes:
+      - carbonate-db-platform:/root/var/data
+    ports:
+      - "127.0.0.1:5433:5433"
+    networks:
+      - test
+
+  carbonate-db-verifier:
+    container_name: carbonate-db-verifier
+    image: yugabytedb/yugabyte:2025.2.0.0-b131
+    command: ["bin/yugabyted", "start", "--background=false"]
+    volumes:
+      - carbonate-db-verifier:/root/var/data
+    ports:
+      - "127.0.0.1:5123:5433"
+    networks:
+      - test
+
+  carbonate-keydb-platform:
+    image: eqalpha/keydb@sha256:6537505c42355ca1f571276bddf83f5b750f760f07b2a185a676481791e388ac
+    container_name: carbonate-keydb-platform
+    command: ["keydb-server", "/etc/keydb/keydb.conf"]
+    labels:
+      service: carbonate
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "127.0.0.1:6479:6379"
+    networks:
+      - test
+   
+  carbonate-keydb-verifier:
+    image: eqalpha/keydb@sha256:6537505c42355ca1f571276bddf83f5b750f760f07b2a185a676481791e388ac
+    container_name: carbonate-keydb-verifier
+    command: ["keydb-server", "/etc/keydb/keydb.conf"]
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "127.0.0.1:6389:6379"
+    networks:
+      - test
+
+volumes:
+  carbonate-db-platform:
+  carbonate-db-verifier:

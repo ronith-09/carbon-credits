@@ -1,0 +1,10 @@
+network/organizations/peerOrganizations/
+network/organizations/ordererOrganizations/
+network/channel-artifacts/
+network/*.tar.gz
+network/*.log
+network/.deployment-verified
+chaincode/vendor/
+.tools/
+.private/
+__pycache__/

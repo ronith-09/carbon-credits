@@ -1,0 +1,79 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+services:
+  peer0.platform.carbonate.local:
+    container_name: carbonate-lp-platform
+    image: npcioss/drunix-peer:1.0.0
+    labels:
+      service: carbonate
+    environment:
+      #Generic peer variables
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=carbonate_pilot
+    volumes:
+      - ./docker/peercfg:/etc/hyperledger/peercfg
+      - ${DOCKER_SOCK}:/host/var/run/docker.sock
+  peer1.platform.carbonate.local:
+    container_name: carbonate-cp-platform
+    image: npcioss/drunix-peer:1.0.0
+    labels:
+      service: carbonate
+    environment:
+      #Generic peer variables
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=carbonate_pilot
+    volumes:
+      - ./docker/peercfg:/etc/hyperledger/peercfg
+      - ${DOCKER_SOCK}:/host/var/run/docker.sock
+  peer2.platform.carbonate.local:
+    container_name: carbonate-vs-platform
+    image: npcioss/drunix-vscc:1.0.0
+    labels:
+      service: carbonate
+    environment:
+      #Generic peer variables
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=carbonate_pilot
+    volumes:
+      - ./docker/peercfg:/etc/hyperledger/peercfg
+      - ${DOCKER_SOCK}:/host/var/run/docker.sock
+
+  peer0.verifier.carbonate.local:
+    container_name: carbonate-lp-verifier
+    image: npcioss/drunix-peer:1.0.0
+    labels:
+      service: carbonate
+    environment:
+      #Generic peer variables
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=carbonate_pilot
+    volumes:
+      - ./docker/peercfg:/etc/hyperledger/peercfg
+      - ${DOCKER_SOCK}:/host/var/run/docker.sock
+  peer1.verifier.carbonate.local:
+    container_name: carbonate-cp-verifier
+    image: npcioss/drunix-peer:1.0.0
+    labels:
+      service: carbonate
+    environment:
+      #Generic peer variables
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=carbonate_pilot
+    volumes:
+      - ./docker/peercfg:/etc/hyperledger/peercfg
+      - ${DOCKER_SOCK}:/host/var/run/docker.sock
+  peer2.verifier.carbonate.local:
+    container_name: carbonate-vs-verifier
+    image: npcioss/drunix-vscc:1.0.0
+    labels:
+      service: carbonate
+    environment:
+      #Generic peer variables
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=carbonate_pilot
+    volumes:
+      - ./docker/peercfg:/etc/hyperledger/peercfg
+      - ${DOCKER_SOCK}:/host/var/run/docker.sock

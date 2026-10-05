@@ -1,0 +1,60 @@
+{
+  "verified_at_utc": "2026-09-25T07:47:05Z",
+  "channel": "carbonate",
+  "chaincode": "carbonate",
+  "version": "0.1.0",
+  "sequence": 1,
+  "application_msps": [
+    "CarbonCreditPlatformMSP",
+    "VerifierMSP"
+  ],
+  "endorsement_policy": "AND('CarbonCreditPlatformMSP.peer','VerifierMSP.peer')",
+  "checks": {
+    "original_tracked_files_unchanged": true,
+    "final_start_exit_code": 0,
+    "contract_and_configuration_checks": "passed",
+    "full_business_pilot": "not implemented / not accepted"
+  },
+  "organisations": {
+    "CarbonCreditPlatformMSP": {
+      "definition": {
+        "sequence": 1,
+        "version": "0.1.0",
+        "endorsement_plugin": "escc",
+        "validation_plugin": "vscc",
+        "validation_parameter": "CkASDBIKCAISAggAEgIIARodEhsKF0NhcmJvbkNyZWRpdFBsYXRmb3JtTVNQEAMaERIPCgtWZXJpZmllck1TUBAD",
+        "collections": {},
+        "approvals": {
+          "CarbonCreditPlatformMSP": true,
+          "VerifierMSP": true
+        }
+      },
+      "query": {
+        "name": "carbonate",
+        "version": "0.1.0",
+        "channel": "carbonate",
+        "clientMSP": "CarbonCreditPlatformMSP"
+      }
+    },
+    "VerifierMSP": {
+      "definition": {
+        "sequence": 1,
+        "version": "0.1.0",
+        "endorsement_plugin": "escc",
+        "validation_plugin": "vscc",
+        "validation_parameter": "CkASDBIKCAISAggAEgIIARodEhsKF0NhcmJvbkNyZWRpdFBsYXRmb3JtTVNQEAMaERIPCgtWZXJpZmllck1TUBAD",
+        "collections": {},
+        "approvals": {
+          "CarbonCreditPlatformMSP": true,
+          "VerifierMSP": true
+        }
+      },
+      "query": {
+        "name": "carbonate",
+        "version": "0.1.0",
+        "channel": "carbonate",
+        "clientMSP": "VerifierMSP"
+      }
+    }
+  }
+}
